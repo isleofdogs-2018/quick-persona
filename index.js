@@ -16,18 +16,19 @@ let popper = null;
 let isOpen = false;
 
 function addQuickPersonaButton() {
-	const quickPersonaButton = `
-    <div id="quickPersona" class="interactable" tabindex="0">
+    const quickPersonaButton = `
+    <div id="quickPersona" class="interactable" tabindex="0" style="position: fixed; bottom: 10px; left: 10px; z-index: 1000;">
         <img id="quickPersonaImg" src="/img/ai4.png" />
         <div id="quickPersonaCaret" class="fa-fw fa-solid fa-caret-up"></div>
     </div>`;
-	// new container for the quick persona button
-	$("#quickPersonaSection").append(quickPersonaButton);
+    
+    $(document.body).append(quickPersonaButton);
 
-	$("#quickPersona").on("click", () => {
-		toggleQuickPersonaSelector();
-	});
+    $('#quickPersona').on('click', () => {
+        toggleQuickPersonaSelector();
+    });
 }
+
 
 async function toggleQuickPersonaSelector() {
 	if (isOpen) {
