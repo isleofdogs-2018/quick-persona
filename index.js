@@ -11,7 +11,7 @@ function addQuickPersonaButton() {
         <img id="quickPersonaImg" src="/img/ai4.png" />
         <div id="quickPersonaCaret" class="fa-fw fa-solid fa-caret-up"></div>
     </div>`;
-    $('#top-settings-holder').append(quickPersonaButton);
+    $(document.body).append(quickPersonaButton);
     $('#quickPersona').on('click', () => {
         toggleQuickPersonaSelector();
     });
