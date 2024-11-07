@@ -2,12 +2,6 @@ body.square-avatars .quickPersonaMenuImg {
 	border-radius: 2px;
 }
 
-.quick-persona-section {
-	display: flex;
-	align-items: center;
-	padding: 10px;
-}
-
 #quickPersonaImg,
 .quickPersonaMenuImg {
 	border-radius: 50%;
