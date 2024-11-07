@@ -15,6 +15,23 @@ function addQuickPersonaButton() {
     $('#quickPersona').on('click', () => {
         toggleQuickPersonaSelector();
     });
+    
+    // Apply CSS directly to set position and z-index
+    $('<style>')
+        .prop('type', 'text/css')
+        .html(`
+            #quickPersona {
+                position: fixed;
+                top: 0;
+                right: 0;
+                z-index: 9999; /* Highest priority */
+                margin: 10px;
+            }
+            #quickPersonaMenu {
+                z-index: 9999; /* Ensures menu is above all */
+            }
+        `)
+        .appendTo('head');
 }
 
 async function toggleQuickPersonaSelector() {
@@ -47,10 +64,15 @@ async function openQuickPersonaSelector() {
     quickPersonaList.hide();
     $(document.body).append(quickPersonaList);
     $('#quickPersonaCaret').toggleClass('fa-caret-up fa-caret-down');
-    $('#quickPersonaMenu').fadeIn(animation_duration);
+    
+    // Popper setup with adjustments for consistent placement
     popper = Popper.createPopper(document.getElementById('quickPersona'), document.getElementById('quickPersonaMenu'), {
-        placement: 'top-start',
+        placement: 'bottom-end', // Adjusted position
+        modifiers: [
+            { name: 'offset', options: { offset: [0, 8] } } // Spacing tweak
+        ]
     });
+    $('#quickPersonaMenu').fadeIn(animation_duration);
     popper.update();
 }
 
@@ -60,7 +82,7 @@ function closeQuickPersonaSelector() {
     $('#quickPersonaMenu').fadeOut(animation_duration, () => {
         $('#quickPersonaMenu').remove();
     });
-    popper.destroy();
+    if (popper) popper.destroy();
 }
 
 function changeQuickPersona() {
