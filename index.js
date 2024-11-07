@@ -17,12 +17,14 @@ let isOpen = false;
 
 function addQuickPersonaButton() {
     const quickPersonaButton = `
-    <div id="quickPersona" class="interactable" tabindex="0" style="position: fixed; bottom: 10px; left: 10px; z-index: 1000;">
-        <img id="quickPersonaImg" src="/img/ai4.png" />
-        <div id="quickPersonaCaret" class="fa-fw fa-solid fa-caret-up"></div>
+    <div id="quickPersonaContainer" style="position: fixed; top: 0; left: 0; width: 100%; display: flex; align-items: center; padding: 10px; background-color: #f9f9f9; z-index: 1000;">
+        <div id="quickPersona" class="interactable" tabindex="0" style="display: flex; align-items: center;">
+            <img id="quickPersonaImg" src="/img/ai4.png" style="width: 40px; height: 40px; border-radius: 50%;"/>
+            <div id="quickPersonaCaret" class="fa-fw fa-solid fa-caret-up" style="margin-left: 8px;"></div>
+        </div>
     </div>`;
     
-    $(document.body).append(quickPersonaButton);
+    $('body').append(quickPersonaButton);
 
     $('#quickPersona').on('click', () => {
         toggleQuickPersonaSelector();
